@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  service_provider: one
+  rating: 1
+  comment: MyString
+
+two:
+  customer: two
+  service_provider: two
+  rating: 1
+  comment: MyString

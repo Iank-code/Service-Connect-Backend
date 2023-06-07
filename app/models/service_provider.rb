@@ -1,0 +1,2 @@
+class ServiceProvider < ApplicationRecord
+end

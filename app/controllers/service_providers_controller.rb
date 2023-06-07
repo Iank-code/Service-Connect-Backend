@@ -1,0 +1,2 @@
+class ServiceProvidersController < ApplicationController
+end
