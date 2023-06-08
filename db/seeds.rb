@@ -1,7 +1,18 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+puts 'seeding 🌱'
+# Fake sample service providers
+service_provider1 = ServiceProvider.create(name:"provider One", summary:"summary one" )
+service_provider2 = ServiceProvider.create(name: "Provider Two", summary: "SUmmary two")
+
+# Fake sample services
+service1 = Service.create(name: "House cleaning", description: "Cleaning the entire house", price: 200, service_provider: service_provider1)
+service2 = Service.create(name: "Car cleaning", description: "Cleaning all types of vehicles", pricw: 230, service_provider: service_provider2)
+
+# Fake sample for microservices 
+Microservice.create(service: service1, name: 'Toilet cleaning', price: 100)
+Microservice.create(service: service1, name: 'Bathroom cleaning', price: 150)
+Microservice.create(service: service1, name: 'Window cleaning', price: 180)
+Microservice.create(service: service1, name: 'Floor cleaning', price: 140)
+
+Microservice.create(service: service2, name: 'Interior Cleaning', price: 160)
+Microservice.create(servcie: servcice2, name: 'Exterior Cleaning')
+puts 'Done seeding 🌱'
