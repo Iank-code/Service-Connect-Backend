@@ -9,6 +9,15 @@ class ServicesController < ApplicationController
         render json: @service
     end
 
+    def create
+        @service = Service.new(service_params)
+        if @service.save 
+            render json: @service, status: :created 
+        else
+            render json: @service.errors, status: :unprocessable_entity
+        end
+    end
+
     def update 
         @service = Service.find(params[:id])
         if@service.update(service_params)
@@ -16,6 +25,12 @@ class ServicesController < ApplicationController
         else
             render json: @service.errors, status: :unprocessable_entity
         end
+    end
+
+    def destroy 
+        @service = Service.find(params[:id])
+        @service.destroy
+        head :no_content
     end
 
     private 
