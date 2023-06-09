@@ -3,7 +3,12 @@ class MicroservicesController < ApplicationController
     def index
         @microservices = Microservice.all
       end
-      
+
+      def show
+        @microservice = Microservice.find(params[:id])
+        render json: @microservice
+    end
+
     def create 
         @microservice = Microservice.new(microservice_params)
         if @microservice.save
@@ -14,6 +19,7 @@ class MicroservicesController < ApplicationController
     end
 
     def update
+        @microservice = Microservice.find(params[:id])
         if @microservice.update(microservice_params)
             render json: @microservice
         else 
