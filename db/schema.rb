@@ -61,11 +61,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_190044) do
   end
 
   create_table "customers", force: :cascade do |t|
-    t.string "username"
-    t.string "email"
+    t.string "username", null: false
+    t.string "email", null: false
     t.string "password_digest", null: false
-    t.string "address"
-    t.string "phone_number"
+    t.string "address", null: false
+    t.string "phone_number", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

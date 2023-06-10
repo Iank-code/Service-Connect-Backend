@@ -2,8 +2,8 @@ class CustomersController < ApplicationController
     before_action :session_expired?, only: [:check_login_status]
   
     def register
-      user = Customer.new(user_params)
-      if user.save
+      user = Customer.create(user_params)
+      if user.valid?
         save_user(user.id)
         app_response(message: 'Registration was successful', status: :created, data: user)
       else
@@ -37,7 +37,7 @@ class CustomersController < ApplicationController
     private
   
     def user_params
-      params.require(:customer).permit(:username, :email, :password, :password_confirmation, :address, :phone_number)
+      params.permit(:username, :email, :password, :password_confirmation, :address, :phone_number)
     end
   end
   
