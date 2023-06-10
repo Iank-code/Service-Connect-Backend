@@ -43,7 +43,7 @@ get '/current_user', to:'application#current_user'
 
 # Service Provider routes
 
-  post '/service_provider/signup', to: 'service_provider#signup'
+  post '/service_provider/register', to: 'service_provider#signup'
 
   post '/service_provider/login', to: 'service_provider#login'
 

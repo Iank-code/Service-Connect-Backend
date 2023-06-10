@@ -2,7 +2,7 @@ class ServiceProvidersController < ApplicationController
     before_action :session_expired?, only: [:check_login_status]
 
     def register
-        user = User.create(user_params)
+        user = ServiceProvider.create(user_params)
         if user.valid?
             save_user(user.id)
             app_response(message: 'Registration was successful', status: :created, data: user)
@@ -13,7 +13,7 @@ class ServiceProvidersController < ApplicationController
         
     def login
         sql = "username = :username OR email = :email"
-        user = User.where(sql, { username: user_params[:username], email: user_params[:email] }).first
+        user = ServiceProvider.where(sql, { username: user_params[:username], email: user_params[:email] }).first
         if user&.authenticate(user_params[:password])
             save_user(user.id)
             token = encode(user.id, user.email)

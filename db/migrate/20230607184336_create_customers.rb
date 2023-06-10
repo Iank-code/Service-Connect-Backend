@@ -3,7 +3,8 @@ class CreateCustomers < ActiveRecord::Migration[7.0]
     create_table :customers do |t|
       t.string :username
       t.string :email
-      t.string :password
+      t.string :password_digest, null: false
+    
       t.string :address
       t.string :phone_number
 

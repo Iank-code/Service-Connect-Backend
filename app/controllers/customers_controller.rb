@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
     before_action :session_expired?, only: [:check_login_status]
   
     def register
-      user = User.new(user_params)
+      user = Customer.new(user_params)
       if user.save
         save_user(user.id)
         app_response(message: 'Registration was successful', status: :created, data: user)
@@ -15,7 +15,7 @@ class CustomersController < ApplicationController
   
     def login
       sql = "username = :username OR email = :email"
-      user = User.where(sql, { username: user_params[:username], email: user_params[:email] }).first
+      user = Customer.where(sql, { username: user_params[:username], email: user_params[:email] }).first
       if user&.authenticate(user_params[:password])
         save_user(user.id)
         token = encode(user.id, user.email)
@@ -37,7 +37,7 @@ class CustomersController < ApplicationController
     private
   
     def user_params
-      params.require(:customer).permit(:username, :email, :password, :address, :phone_number)
+      params.require(:customer).permit(:username, :email, :password, :password_confirmation, :address, :phone_number)
     end
   end
   
