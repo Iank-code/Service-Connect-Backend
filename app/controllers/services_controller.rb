@@ -1,4 +1,5 @@
 class ServicesController < ApplicationController
+    # before_action :verify_auth
 
     def index 
         @services = Service.all
