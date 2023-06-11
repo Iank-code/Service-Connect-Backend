@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
   
     def index
       user = Customer.all
-      app_response(message: 'Registration was successful', status: :ok, data: user,)
+      render json: user
     end
 
     def show
@@ -49,7 +49,7 @@ class CustomersController < ApplicationController
     private
   
     def user_params
-      params.permit(:username, :email, :password, :password_confirmation, :address, :phone_number, :file)
+      params.permit(:username, :email, :password, :password_confirmation, :role, :address, :phone_number, :file)
     end
   end
   
