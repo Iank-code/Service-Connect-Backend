@@ -35,4 +35,15 @@ Microservice.create(service: service1, name: 'Floor cleaning', price: 140)
 
 Microservice.create(service: service2, name: 'Interior Cleaning', price: 160)
 Microservice.create(service: service2, name: 'Exterior Cleaning')
+
+
+10.times do
+    Review.create(
+        customer_id: rand(1..2), 
+        service_provider_id: rand(1..2),
+        rating: rand(1..5),
+        comment: Faker::Lorem.sentence
+      )
+  end
+
 puts 'Done seeding 🌱'
