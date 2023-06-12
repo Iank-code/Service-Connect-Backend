@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
-
+    before_action verify_auth
+    
     def index
         @reviews = Review.all
         render json: @reviews, status: :ok
@@ -40,4 +41,5 @@ class ReviewsController < ApplicationController
     def review_params
         params.permit(:customer_id, :service_provider_id, :rating, :comment)
     end
+    
 end
