@@ -5,6 +5,11 @@ class BookingsController < ApplicationController
         render json: @bookings
     end
 
+    def show
+        @booking = Booking.find(params[:id])
+        render json: @booking
+    end
+
     def create 
         @booking = Booking.new(booking_params)
         if @booking.save
@@ -15,6 +20,7 @@ class BookingsController < ApplicationController
     end
 
     def update
+        @booking = Booking.find(params[:id])
         if @booking.update(booking_params)
             render json: @booking
         else 
@@ -28,8 +34,8 @@ class BookingsController < ApplicationController
     end
 
     private
-    
+
     def booking_params
         params.require(:booking).permit(:customer_id, :service_provider_id, :service_date, :service_time, :payment_method)
-      end
+    end
 end
