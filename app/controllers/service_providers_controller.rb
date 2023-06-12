@@ -11,7 +11,6 @@ class ServiceProvidersController < ApplicationController
         blob = ActiveStorage::Blob.find(params[:id])
         image = url_for(blob)
         app_response(status: :ok, data: {user: user, image: image})
-        # render json: user, serializer: ServiceProviderSerializer
     end
 
     def register

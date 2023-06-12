@@ -7,7 +7,10 @@ class CustomersController < ApplicationController
     end
 
     def show
-      
+      user = Customer.find(params[:id])
+      blob = ActiveStorage::Blob.find(params[:id])
+      image = url_for(blob)
+      app_response(status: :ok, data: {user: user, image: image})
     end
 
     def register

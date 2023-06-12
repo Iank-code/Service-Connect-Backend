@@ -35,6 +35,8 @@ get '/current_user', to:'application#current_user'
 # Customer routes
   post '/customer/register', to:'customers#register'
 
+  get '/customer/:id', to: 'customers#show'
+
   post '/customer/login', to:'customers#login'
 
   delete '/customer/logout', to:'customers#logout'
