@@ -1,4 +1,5 @@
 # Rails.application.routes.draw do
+  # resources :service_provider_informations
   # get 'sessions/login'
   # get 'sessions/signup'
   # resources :bookings
@@ -15,12 +16,12 @@
 # end
 Rails.application.routes.draw do
   # Other routes...
-resources :customers
-resources :bookings
-resources :reviews
-resources :microservices
-resources :services
-resources :service_provider
+  resources :customers
+  resources :bookings
+  resources :reviews
+  resources :microservices
+  resources :services
+  resources :service_providers
 get '/current_user', to:'application#current_user'
   # Admin routes
   post '/admin/signup', to: 'admin#create_admin'
@@ -34,6 +35,8 @@ get '/current_user', to:'application#current_user'
 # Customer routes
   post '/customer/register', to:'customers#register'
 
+  get '/customer/:id', to: 'customers#show'
+
   post '/customer/login', to:'customers#login'
 
   delete '/customer/logout', to:'customers#logout'
@@ -43,7 +46,9 @@ get '/current_user', to:'application#current_user'
 
 # Service Provider routes
 
-  post '/service_provider/register', to: 'service_provider#signup'
+  post '/service_provider/register', to: 'service_providers#register'
+  get '/service_provider', to: 'service_providers#index'
+  get '/service_provider/:id', to: 'service_providers#show'
 
   post '/service_provider/login', to: 'service_provider#login'
 

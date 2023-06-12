@@ -1,11 +1,24 @@
 class ServiceProvidersController < ApplicationController
     before_action :session_expired?, only: [:check_login_status]
 
+    def index
+        user = ServiceProvider.all
+        render json: user
+    end
+
+    def show
+        user = ServiceProvider.find(params[:id])
+        blob = ActiveStorage::Blob.find(params[:id])
+        image = url_for(blob)
+        app_response(status: :ok, data: {user: user, image: image})
+    end
+
     def register
         user = ServiceProvider.create(user_params)
         if user.valid?
             save_user(user.id)
-            app_response(message: 'Registration was successful', status: :created, data: user)
+            token = encode(user.id, user.email)
+            app_response(message: 'Registration was successful', status: :created, data: {user: user, token: token})
         else
             app_response(message: 'Something went wrong during registration', status: :unprocessable_entity, data: user.errors)
         end
@@ -59,7 +72,7 @@ class ServiceProvidersController < ApplicationController
         private 
     
         def user_params
-            params.permit(:username, :email, :password, :profile_image, :location, :phone_number, :experience, :summary, :work_image, :availability)
+            params.permit(:username, :email, :password, :password_confirmation, :address, :role, :phone_number, :file)
         end
        
       

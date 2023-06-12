@@ -3,11 +3,14 @@ class CustomersController < ApplicationController
   
     def index
       user = Customer.all
-      app_response(message: 'Registration was successful', status: :ok, data: user,)
+      render json: user
     end
 
     def show
-      
+      user = Customer.find(params[:id])
+      blob = ActiveStorage::Blob.find(params[:id])
+      image = url_for(blob)
+      app_response(status: :ok, data: {user: user, image: image})
     end
 
     def register
@@ -49,7 +52,7 @@ class CustomersController < ApplicationController
     private
   
     def user_params
-      params.permit(:username, :email, :password, :password_confirmation, :address, :phone_number, :file)
+      params.permit(:username, :email, :password, :password_confirmation, :role, :address, :phone_number, :file)
     end
   end
   
