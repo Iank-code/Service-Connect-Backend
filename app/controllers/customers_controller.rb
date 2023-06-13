@@ -18,9 +18,14 @@ class CustomersController < ApplicationController
       if user.valid?
         user.save
         save_user(user.id)
+        CustomerMailer.welcome_email(user).deliver_now
         token = encode(user.id, user.email)
         session[:user_id] = user.id
-        app_response(message: 'Registration was successful', status: :created, data: {user: user, token: token})
+        blob = ActiveStorage::Blob.find(user.id)
+        image = url_for(blob)
+        user_attributes = user.attributes.except('updated_at', 'created_at', 'password_digest')
+  
+        app_response(message: 'Registration was successful', status: :created, data: {user: user_attributes, token: token, image: image})
       else
         app_response(message: 'Something went wrong during registration', status: :unprocessable_entity, data: user.errors)
       end
@@ -34,7 +39,10 @@ class CustomersController < ApplicationController
       if user&.authenticate(user_params[:password])
         save_user(user.id)
         token = encode(user.id, user.email)
-        app_response(message: 'Login was successful', status: :ok, data: { user: user, token: token })
+        blob = ActiveStorage::Blob.find(user.id)
+        image = url_for(blob)
+        user_attributes = user.attributes.except('updated_at', 'created_at', 'password_digest')
+        app_response(message: 'Login was successful', status: :ok, data: { user: user_attributes, token: token, image: image })
       else
         app_response(message: 'Invalid username/email or password', status: :unauthorized)
       end
