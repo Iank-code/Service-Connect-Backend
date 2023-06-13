@@ -87,8 +87,6 @@ GEM
     faker (3.2.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
-    faker (3.2.0)
-      i18n (>= 1.8.11, < 2)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.14.1)
@@ -101,7 +99,6 @@ GEM
       reline (>= 0.3.0)
     jsonapi-renderer (0.2.2)
     jwt (2.7.0)
-    jsonapi-renderer (0.2.2)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -186,13 +183,11 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.13)
   bcrypt (~> 3.1.7)
-  active_model_serializers
   bootsnap
   debug
   faker
   image_processing (~> 1.2)
   jwt (~> 2.7)
-  faker
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.5)
@@ -201,7 +196,7 @@ DEPENDENCIES
   warden
 
 RUBY VERSION
-   ruby 3.1.3p185
+   ruby 2.7.4p191
 
 BUNDLED WITH
    2.4.7

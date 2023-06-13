@@ -55,7 +55,3 @@ end
 
 
 gem "jwt", "~> 2.7"
-
-gem "faker"
-
-gem "active_model_serializers"
