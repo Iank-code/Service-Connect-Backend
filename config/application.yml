@@ -1,0 +1,7 @@
+config.autoload_paths += %W(#{config.root}/lib)
+
+
+MPESA_CONSUMER_KEY: 9qBCLkcypq5nsN9ceT5WkEWEdgfJffHk
+
+MPESA_CONSUMER_SECRET: a2QfzNF0wsvNgXdA
+

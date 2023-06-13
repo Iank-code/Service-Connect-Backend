@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   resources :services
   resources :service_providers
 get '/current_user', to:'application#current_user'
+get '/mpesa/credentials', to:'mpesa#credentials'
+post '/mpesa/payments', to:'mpesa#create'
   # Admin routes
   post '/admin/signup', to: 'admin#create_admin'
   post '/admin/login', to: 'admin#login_admin'
