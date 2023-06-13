@@ -1,4 +1,7 @@
 require "active_support/core_ext/integer/time"
+# require 'ruby-daraja'
+# CONSUMER_KEY='9qBCLkcypq5nsN9ceT5WkEWEdgfJffHk9qBCLkcypq5nsN9ceT5WkEWEdgfJffHk'
+# CONSUMER_SECRET='daraja consumer secret '
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
