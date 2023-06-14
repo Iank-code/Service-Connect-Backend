@@ -18,7 +18,11 @@ class ServiceProvidersController < ApplicationController
         if user.valid?
             save_user(user.id)
             token = encode(user.id, user.email)
-            app_response(message: 'Registration was successful', status: :created, data: {user: user, token: token})
+            blob = ActiveStorage::Blob.find(user.id)
+            image = url_for(blob)
+            user_attributes = user.attributes.except('updated_at', 'created_at', 'password_digest')
+
+            app_response(message: 'Registration was successful', status: :created, data: {user: user, image: image, token: token, route: 'http://127.0.0.1:3000/service_provider/logout'})
         else
             app_response(message: 'Something went wrong during registration', status: :unprocessable_entity, data: user.errors)
         end
@@ -30,7 +34,11 @@ class ServiceProvidersController < ApplicationController
         if user&.authenticate(user_params[:password])
             save_user(user.id)
             token = encode(user.id, user.email)
-            app_response(message: 'Login was successful', status: :ok, data: {user: user, token: token})
+            blob = ActiveStorage::Blob.find(user.id)
+            image = url_for(blob)
+            user_attributes = user.attributes.except('updated_at', 'created_at', 'password_digest')
+
+            app_response(message: 'Login was successful', status: :ok, data: {user: user_attributes, image: image, token: token,  route: 'http://127.0.0.1:3000/service_provider/logout'})
         else
             app_response(message: 'Invalid username/email or password', status: :unauthorized)
         end
@@ -39,7 +47,7 @@ class ServiceProvidersController < ApplicationController
 
     def logout
         remove_user
-        app_response(message: 'Logout successful')
+        app_response(message: 'Logout successful', status: :ok)
     end
 
     def check_login_status
