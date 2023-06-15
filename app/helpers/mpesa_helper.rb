@@ -1,16 +1,10 @@
-require 'oauth2'
+# app/helpers/mpesa_helper.rb
 
 module MpesaHelper
-  def get_access_token
-    client = OAuth2::Client.new(
-      ENV['MPESA_CONSUMER_KEY'],
-      ENV['MPESA_CONSUMER_SECRET'],
-      site: 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials' # Replace with the appropriate OAuth API endpoint URL
-    )
-
-    token = client.client_credentials.get_token
-    access_token = token.token
-
-    access_token # Return the access token
+  def create_timestamp
+    year = Time.now
+    date = year.to_s.split(' ')[0].split('-').join('')
+    date_two = year.to_s.split(' ')[1].split(':').join('')
+    "#{date}#{date_two}"
   end
 end

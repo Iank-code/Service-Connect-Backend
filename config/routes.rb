@@ -15,6 +15,8 @@
 #   # root "articles#index"
 # end
 Rails.application.routes.draw do
+  post '/initiate_stk_push', to: 'mpesa#initiate_stk_push'
+
   # Other routes...
   resources :customers
   resources :bookings
