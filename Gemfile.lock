@@ -112,7 +112,7 @@ GEM
     irb (1.7.0)
       reline (>= 0.3.0)
     jsonapi-renderer (0.2.2)
-    jwt (2.7.0)
+    jwt (2.7.1)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -128,7 +128,7 @@ GEM
     minitest (5.18.0)
     msgpack (1.7.1)
     multi_xml (0.6.0)
-    net-imap (0.3.4)
+    net-imap (0.3.6)
       date
       net-protocol
     net-pop (0.1.2)
@@ -155,7 +155,7 @@ GEM
       version_gem (~> 1.1)
     puma (5.6.5)
       nio4r (~> 2.0)
-    racc (1.7.0)
+    racc (1.7.1)
     rack (2.2.7)
     rack-cors (2.0.1)
       rack (>= 2.0.0)
@@ -232,6 +232,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.0.5)
   ruby-daraja (~> 0.1.0.pre.alpha)
+  ruby-vips (~> 2.1, >= 2.1.4)
   sqlite3 (~> 1.4)
   tzinfo-data
   warden
