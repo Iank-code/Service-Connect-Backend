@@ -13,7 +13,7 @@ module Api
     config.middleware.use ActionDispatch::Session::CookieStore
     config.action_dispatch.cookies_same_site_protection = :strict
 
-    MpesaConfig = YAML.load_file(Rails.root.join('config', 'mpesa.yml'))[Rails.env]
+    # MpesaConfig = YAML.load_file(Rails.root.join('config', 'mpesa.yml'))[Rails.env]
 
 
     # Configuration for the application, engines, and railties goes here.

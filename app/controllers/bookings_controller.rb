@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+    require 'mpesa_service'
  
     def index 
         @bookings = Booking.all

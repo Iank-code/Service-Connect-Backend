@@ -13,6 +13,9 @@ gem 'faker'
 gem 'oauth'
 gem 'oauth2'
 gem 'httparty'
+gem 'base64'
+gem 'excon'
+
 
 
 
