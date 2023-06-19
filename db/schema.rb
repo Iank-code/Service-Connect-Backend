@@ -63,7 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_190044) do
   create_table "customers", force: :cascade do |t|
     t.string "username"
     t.string "email"
-    t.string "password_digest", null: false
+    t.string "password"
     t.string "address"
     t.string "phone_number"
     t.datetime "created_at", null: false
