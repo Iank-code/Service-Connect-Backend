@@ -189,6 +189,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    redis (4.8.1)
     reline (0.3.5)
       io-console (~> 0.5)
     ruby-daraja (0.1.0.pre.alpha)
@@ -231,6 +232,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.5)
+  redis (~> 4.0)
   ruby-daraja (~> 0.1.0.pre.alpha)
   ruby-vips (~> 2.1, >= 2.1.4)
   sqlite3 (~> 1.4)
@@ -238,7 +240,7 @@ DEPENDENCIES
   warden
 
 RUBY VERSION
-   ruby 3.0.4p208
+   ruby 2.7.4p191
 
 BUNDLED WITH
    2.4.7
