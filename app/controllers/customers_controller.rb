@@ -56,11 +56,23 @@ class CustomersController < ApplicationController
     def check_login_status
       app_response(message: 'Success', status: :ok)
     end
+
+    def update_password
+      @user = User.find(id: session[:user_id])
+      if @user && @user.authenticate(params[:current_password])
+        if @user.update(password:params[:new_password], password_confirmation: params[new_password_confirmation])
+          app_response(message: 'Password changed successful', status: :success)
+        end
+      end
+    end
   
     private
   
     def user_params
       params.permit(:username, :email, :password, :password_confirmation, :role, :address, :phone_number, :file)
+    end
+    def user_cred
+      params.permit(:current_password, :new_password, :new_password_confirmation)
     end
   end
   
