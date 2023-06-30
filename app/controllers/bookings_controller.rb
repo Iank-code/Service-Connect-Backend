@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+    require 'mpesa_service'
  
     def index 
         @bookings = Booking.all
@@ -37,5 +38,5 @@ class BookingsController < ApplicationController
 
     def booking_params
         params.require(:booking).permit(:customer_id, :service_provider_id, :service_date, :service_time, :payment_method)
-      end
+    end
 end

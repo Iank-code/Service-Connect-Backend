@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_07_190044) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_11_192912) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -88,6 +88,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_190044) do
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_reviews_on_customer_id"
     t.index ["service_provider_id"], name: "index_reviews_on_service_provider_id"
+  end
+
+  create_table "service_provider_informations", force: :cascade do |t|
+    t.integer "experience"
+    t.string "about"
+    t.string "availability"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "service_providers", force: :cascade do |t|

@@ -46,6 +46,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_model_serializers (0.10.13)
+      actionpack (>= 4.1, < 7.1)
+      activemodel (>= 4.1, < 7.1)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
     activejob (7.0.5)
       activesupport (= 7.0.5)
       globalid (>= 0.3.6)
@@ -66,27 +71,48 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-    bcrypt (3.1.18)
+    base64 (0.1.1)
+    bcrypt (3.1.19)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    case_transform (0.2)
+      activesupport
     concurrent-ruby (1.2.2)
     crass (1.0.6)
     date (3.3.3)
     debug (1.8.0)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.12.0)
+    excon (0.100.0)
     faker (3.2.0)
       i18n (>= 1.8.11, < 2)
+    faraday (2.7.7)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.2)
+    ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    hashie (5.0.0)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
+    image_processing (1.12.2)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     io-console (0.6.0)
     irb (1.7.0)
       reline (>= 0.3.0)
-    jwt (2.7.0)
+    jsonapi-renderer (0.2.2)
+    jwt (2.7.1)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -97,10 +123,12 @@ GEM
       net-smtp
     marcel (1.0.2)
     method_source (1.0.0)
+    mini_magick (4.12.0)
     mini_mime (1.1.2)
-    minitest (5.18.0)
+    minitest (5.18.1)
     msgpack (1.7.1)
-    net-imap (0.3.4)
+    multi_xml (0.6.0)
+    net-imap (0.3.6)
       date
       net-protocol
     net-pop (0.1.2)
@@ -112,9 +140,22 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.2-x86_64-linux)
       racc (~> 1.4)
-    puma (5.6.5)
+    oauth (1.1.0)
+      oauth-tty (~> 1.0, >= 1.0.1)
+      snaky_hash (~> 2.0)
+      version_gem (~> 1.1)
+    oauth-tty (1.0.5)
+      version_gem (~> 1.1, >= 1.1.1)
+    oauth2 (2.0.9)
+      faraday (>= 0.17.3, < 3.0)
+      jwt (>= 1.0, < 3.0)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 4)
+      snaky_hash (~> 2.0)
+      version_gem (~> 1.1)
+    puma (5.6.6)
       nio4r (~> 2.0)
-    racc (1.7.0)
+    racc (1.7.1)
     rack (2.2.7)
     rack-cors (2.0.1)
       rack (>= 2.0.0)
@@ -148,13 +189,22 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    redis (4.8.1)
     reline (0.3.5)
       io-console (~> 0.5)
+    ruby-daraja (0.1.0.pre.alpha)
+    ruby-vips (2.1.4)
+      ffi (~> 1.12)
+    ruby2_keywords (0.0.5)
+    snaky_hash (2.0.1)
+      hashie
+      version_gem (~> 1.1, >= 1.1.1)
     sqlite3 (1.6.3-x86_64-linux)
     thor (1.2.2)
-    timeout (0.3.2)
+    timeout (0.4.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    version_gem (1.1.3)
     warden (1.2.9)
       rack (>= 2.0.9)
     websocket-driver (0.7.5)
@@ -166,20 +216,31 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  active_model_serializers (~> 0.10.13)
+  base64
   bcrypt (~> 3.1.7)
   bootsnap
   debug
+  dotenv-rails
+  excon
   faker
+  httparty
+  image_processing (~> 1.2)
   jwt (~> 2.7)
+  oauth
+  oauth2
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.5)
+  redis (~> 4.0)
+  ruby-daraja (~> 0.1.0.pre.alpha)
+  ruby-vips (~> 2.1, >= 2.1.4)
   sqlite3 (~> 1.4)
   tzinfo-data
   warden
 
 RUBY VERSION
-   ruby 3.0.4p208
+   ruby 2.7.4p191
 
 BUNDLED WITH
    2.4.7

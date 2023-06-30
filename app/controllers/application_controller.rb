@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
     include ActionController::Cookies
+    include MpesaHelper
 
     rescue_from StandardError, with: :standard_error
 

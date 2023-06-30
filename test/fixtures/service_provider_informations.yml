@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  experience: 1
+  about: MyString
+  availability: MyString
+
+two:
+  experience: 1
+  about: MyString
+  availability: MyString

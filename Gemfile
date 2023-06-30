@@ -1,12 +1,22 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.0.4"
+ruby "2.7.4"
+# ruby "3.0.4"
+gem 'active_model_serializers', '~> 0.10.13'
+gem 'ruby-vips', '~> 2.1', '>= 2.1.4'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.5"
 gem 'warden'
 gem 'faker'
+
+gem 'oauth'
+gem 'oauth2'
+gem 'httparty'
+gem 'base64'
+gem 'excon'
+
 
 
 
@@ -20,7 +30,7 @@ gem "puma", "~> 5.0"
 # gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
-# gem "redis", "~> 4.0"
+gem "redis", "~> 4.0"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -35,7 +45,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
@@ -53,4 +63,5 @@ end
 
 
 gem "jwt", "~> 2.7"
-
+gem 'ruby-daraja', '~> 0.1.0.pre.alpha'
+gem 'dotenv-rails', groups: [:development, :test]

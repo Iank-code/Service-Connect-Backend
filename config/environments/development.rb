@@ -1,7 +1,24 @@
 require "active_support/core_ext/integer/time"
+# require 'ruby-daraja'
+# CONSUMER_KEY='9qBCLkcypq5nsN9ceT5WkEWEdgfJffHk9qBCLkcypq5nsN9ceT5WkEWEdgfJffHk'
+# CONSUMER_SECRET='daraja consumer secret '
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'http://localhost:3000',
+    user_name:            "kian99564@gmail.com",
+    password:             "lzjboeklabbxsxkt",
+    # user_name:            Rails.application.credentials.dig(:google_smtp, :email),
+    # password:             Rails.application.credentials.dig(:google_smtp, :password),
+    authentication:       'plain',
+    enable_starttls_auto: true,
+    open_timeout:         5,
+    read_timeout:         5 
+  }
 
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
@@ -34,7 +51,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -62,4 +79,7 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  
+
 end
