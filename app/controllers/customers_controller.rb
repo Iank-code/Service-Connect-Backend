@@ -30,7 +30,8 @@ class CustomersController < ApplicationController
         app_response(message: 'Something went wrong during registration', status: :unprocessable_entity, data: user.errors)
       end
     end
-  
+  end
+
         
   
     def login
@@ -75,4 +76,19 @@ class CustomersController < ApplicationController
       params.permit(:current_password, :new_password, :new_password_confirmation)
     end
   end
-  
+
+  def logout
+    remove_user
+    app_response(message: 'Logout successful')
+  end
+
+  def check_login_status
+    app_response(message: 'Success', status: :ok)
+  end
+
+  private
+
+  def user_params
+    params.require(:customer).permit(:username, :email, :password, :password_confirmation, :address, :phone_number)
+  end
+end
