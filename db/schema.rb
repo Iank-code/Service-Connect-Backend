@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_11_192912) do
   create_table "admins", force: :cascade do |t|
     t.string "username"
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -61,11 +61,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_11_192912) do
   end
 
   create_table "customers", force: :cascade do |t|
-    t.string "username"
-    t.string "email"
-    t.string "password"
-    t.string "address"
-    t.string "phone_number"
+    t.string "username", null: false
+    t.string "email", null: false
+    t.string "password_digest"
+    t.string "address", null: false
+    t.string "phone_number", null: false
+    t.string "role", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -99,14 +100,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_11_192912) do
   end
 
   create_table "service_providers", force: :cascade do |t|
-    t.string "username"
-    t.string "email"
-    t.string "password"
-    t.string "address"
-    t.string "phone_number"
-    t.integer "experience"
-    t.string "summary"
-    t.string "availability"
+    t.string "username", null: false
+    t.string "email", null: false
+    t.string "password_digest"
+    t.string "address", null: false
+    t.string "phone_number", null: false
+    t.string "role", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

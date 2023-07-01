@@ -20,9 +20,8 @@ class ServiceProvidersController < ApplicationController
             token = encode(user.id, user.email)
             blob = ActiveStorage::Blob.find(user.id)
             image = url_for(blob)
-            user_attributes = user.attributes.except('updated_at', 'created_at', 'password_digest')
-
-            app_response(message: 'Registration was successful', status: :created, data: {user: user, image: image, token: token, route: 'http://127.0.0.1:3000/service_provider/logout'})
+            user_data = user.as_json.except("created_at", "updated_at","password_digest")
+            app_response(message: 'Registration was successful', status: :created, data: {data: user_data, token: token, image: image})
         else
             app_response(message: 'Something went wrong during registration', status: :unprocessable_entity, data: user.errors)
         end
