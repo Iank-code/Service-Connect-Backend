@@ -6,5 +6,5 @@ class Service < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :price, presence: true, numericality: {greater_than_or_equalto: 0 }
-  validates :service_provider_id, presence: true
+  # validates :service_provider_id, presence: true
 end

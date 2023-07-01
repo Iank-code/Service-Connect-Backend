@@ -7,6 +7,6 @@ class Customer < ApplicationRecord
     validates :file, presence: true
     validates :email, {
         presence: true,
-        uniqueness: true
+        # uniqueness: true
     }
 end
