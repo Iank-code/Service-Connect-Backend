@@ -11,7 +11,7 @@ class ServicesController < ApplicationController
             service_data = service.attributes.merge(pics: service_img)
             images << service_data
         end
-        app_response(data: @services)
+        app_response(data: images, status: 200)
     end
 
     def show
