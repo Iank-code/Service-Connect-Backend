@@ -34,6 +34,6 @@ class MicroservicesController < ApplicationController
 
     private 
     def microservice_params 
-        params.require(microservice).permit(:service_id, :name, :price)
+        params.require(microservice).permit(:service_id, :name, :price, :image)
     end
 end
