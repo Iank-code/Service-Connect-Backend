@@ -8,15 +8,21 @@ class MicroservicesController < ApplicationController
         @microservice = Microservice.find(params[:id])
         render json: @microservice
     end
-
-    def create 
-        @microservice = Microservice.new(microservice_params)
-        if @microservice.save
-            render json: @microservice, status: :created, location: @microservice
-        else
-            render json: @microservice.errors, status: :unprocessable_entity
-        end
+  def create 
+    @microservice = Microservice.new(microservice_params)
+    if params[:image]
+      @microservice.image.attach(params[:image])
     end
+    if @microservice.save
+      image_url = url_for(@microservice.image) if @microservice.image.attached?
+      render json: { microservice: @microservice, image_url: image_url }, status: :created, location: @microservice
+    else
+      # Log validation errors
+      puts @microservice.errors.full_messages
+
+      render json: @microservice.errors, status: :unprocessable_entity
+    end
+  end
 
     def update
         @microservice = Microservice.find(params[:id])
@@ -34,6 +40,6 @@ class MicroservicesController < ApplicationController
 
     private 
     def microservice_params 
-        params.require(microservice).permit(:service_id, :name, :price, :image)
+      params.require(:microservice).permit(:service_id, :name, :price, :image)
     end
-end
+  end

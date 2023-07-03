@@ -26,8 +26,8 @@ class ServicesController < ApplicationController
     def create
         @service = Service.new(service_params)
         if @service.save
-            # blob = ActiveStorage::Blob.find(@service.id)
-            # image = url_for(blob)
+            blob = ActiveStorage::Blob.find(@service.id)
+            image = url_for(blob)
             app_response(message: 'Services gotten successfull', status: :ok, data: { data: @service})
         else
             render json: @service.errors, status: :unprocessable_entity
@@ -53,6 +53,6 @@ class ServicesController < ApplicationController
 
     def service_params
         # image? Upload?
-        params.permit(:name, :description, :price, :service_provider_id, images:[])
+        params.permit(:name, :description, :price, :service_provider_id, :images:[])
     end
 end
