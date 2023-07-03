@@ -19,7 +19,14 @@ class ServicesController < ApplicationController
         if @service
             blob = ActiveStorage::Blob.find(@service.id)
             image = url_for(blob)
-            app_response(status: :ok, data: { data: @service, image: image})
+
+            service_provider_info = @service.service_provider
+            provider = service_provider_info.as_json.except("created_at", "updated_at", "password_digest")
+
+            provider_blob = ActiveStorage::Blob.find(service_provider_info.id)
+            provider_image = url_for(provider_blob)
+
+            app_response(status: :ok, data: { data: @service, image: image, provider: provider, provider_image: provider_image})
         end
     end
 
