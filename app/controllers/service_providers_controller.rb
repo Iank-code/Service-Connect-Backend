@@ -14,20 +14,21 @@ class ServiceProvidersController < ApplicationController
     end
 
     def register
-        user = ServiceProvider.create(user_params)
+        user = Customer.create(user_params)
         if user.valid?
             save_user(user.id)
             token = encode(user.id, user.email)
+            session[:user_id] = user.id
             blob = ActiveStorage::Blob.find(user.id)
             image = url_for(blob)
-            user_data = user.as_json.except("created_at", "updated_at","password_digest")
-            app_response(data: user_data)
-            # app_response(message: 'Registration was successful', status: :created, data: {data: user_data, token: token, image: image})
+            user_attributes = user.attributes.except('updated_at', 'created_at', 'password_digest')
+
+            app_response(message: 'Registration was successful', status: :created, data: {user: user_attributes, token: token, image: image, route: 'http://127.0.0.1:3000/service_provider/logout'})
         else
             app_response(message: 'Something went wrong during registration', status: :unprocessable_entity, data: user.errors)
         end
     end
-        
+
     def login
         sql = "username = :username OR email = :email"
         user = ServiceProvider.where(sql, { username: user_params[:username], email: user_params[:email] }).first
