@@ -4,7 +4,7 @@ class CreateReviews < ActiveRecord::Migration[7.0]
       t.belongs_to :customer, null: false, foreign_key: true
       t.belongs_to :service_provider, null: false, foreign_key: true
       t.integer :rating
-      t.string :comment
+      t.string :comment, optional: true
 
       t.timestamps
     end

@@ -1,14 +1,24 @@
 class ReviewsController < ApplicationController
-    before_action verify_auth
-    
     def index
         @reviews = Review.all
-        render json: @reviews, status: :ok
+        each_review = []
+        @reviews.each do |service |
+            customer_info = service.customer
+            customer = customer_info.as_json.except("id", "address", "email", "phone_number", "role", "updated_at", "password_digest")
+
+
+            customer_blob = ActiveStorage::Blob.find(customer_info.id)
+            customer_image = url_for(customer_blob)
+
+            service_data = service.attributes.merge(customer: customer, customer_image: customer_image)
+            each_review << service_data
+        end
+        app_response(data: each_review, status: 200)
     end
 
     def show
         @review = Review.find(params[:id])
-        render json: @review
+        app_response(message: "Review submitted successfuly", data: @review, status: 200)
     end
 
     def create

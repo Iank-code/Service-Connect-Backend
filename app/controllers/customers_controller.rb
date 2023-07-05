@@ -17,7 +17,6 @@ class CustomersController < ApplicationController
     user = Customer.create(user_params)
     if user.valid?
       save_user(user.id)
-      # CustomerMailer.welcome_email(user).deliver_now
       token = encode(user.id, user.email)
       session[:user_id] = user.id
       blob = ActiveStorage::Blob.find(user.id)
