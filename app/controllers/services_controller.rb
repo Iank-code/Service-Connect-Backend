@@ -28,16 +28,20 @@ class ServicesController < ApplicationController
         end
     end
 
-    def create
-        @service = Service.new(service_params)
-        if @service.save
-            # blob = ActiveStorage::Blob.find(@service.id)
-            # image = url_for(blob)
-            app_response(message: 'Services gotten successfull', status: :ok, data: { data: @service})
-        else
-            render json: @service.errors, status: :unprocessable_entity
-        end
+  def create
+    @service = Service.new(service_params)
+    if @service.save
+      # Generate URLs for each attached image
+      image_urls = @service.images.map { |image| url_for(image) }
+
+      app_response(message: 'Services gotten successfull', status: :ok, data: { data: @service, images: image_urls })
+    else
+      # Log validation errors
+      puts @service.errors.full_messages
+
+      render json: @service.errors, status: :unprocessable_entity
     end
+  end
 
     def update 
         @service = Service.find(params[:id])
